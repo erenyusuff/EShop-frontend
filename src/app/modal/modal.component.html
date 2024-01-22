@@ -1,0 +1,14 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Yetkisiz Giriş Denemesi</h4>
+  </div>
+<!--  <div class="modal-body">-->
+<!--    <p>Hello, World!</p>-->
+<!--  </div>-->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" href="home" routerLink="home"><meta http-equiv="refresh" content="5;URL=http://localhost:8081/home">
+      Tamam</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>

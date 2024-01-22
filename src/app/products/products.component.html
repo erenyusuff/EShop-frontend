@@ -1,0 +1,26 @@
+<div class="Electronic">
+  <h1></h1>
+  <div class="container">
+    <div class="card text-white bg-dark mb-3 col-md-6 float-left col-md-6 float-right mx-2 my-2  "
+         style="width: 14rem;height: 23rem"
+         *ngFor="let item of productList">
+      <img class="card-img-top col my-4" style="width: 20rem;height: 10rem; border-radius: 10px;"
+           src="{{item.img}}"
+           alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{item.productName}}  </h5>
+        <p class="card-text">{{item.price}}  </p>
+        <a (click)="addToCart(item)" class="btn btn-primary">Sepete ekle</a>
+      </div>
+    </div>
+    <div id="list-example" class="list-group col-md-2">
+      <a class="list-group-item list-group-item-action" href="products/applewatch">Apple Watch</a>
+      <a class="list-group-item list-group-item-action" href="products/mac">MacBook</a>
+      <a class="list-group-item list-group-item-action" href="products/airpods">Airpods</a>
+      <a class="list-group-item list-group-item-action" href="products/Iphone">Iphone</a>
+      <a class="list-group-item list-group-item-action" href="products/ipad">Ipad</a>
+
+
+    </div>
+  </div>
+</div>

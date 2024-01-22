@@ -1,0 +1,157 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of Product">{{item.productName}}<button type="button" data-toggle="modal2" data-target="#exampleModal" (click)="openModal2('custom-modal-2')">
+      Update Product
+    </button> <button (click)="deleteProduct(item.id); refresh()">Delete</button></li>
+  </ul>
+
+  <div [ngClass]="modal2" tabindex="-2" role="dialog">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row">
+            <div class="col col-md-8" style="overflow-y: scroll; max-height: 100vh">
+              <form [formGroup]="productForm">
+                <div class="mb-3">
+                  <label for="productName" class="form-label">productName</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="productName"
+                    formControlName="productName"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="price" class="form-label">price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="price"
+                    formControlName="price"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="stock" class="form-label">stock</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="stock"
+                    formControlName="stock"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    formControlName="description"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="img" class="form-label">image</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="img"
+                    formControlName="img"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="category" class="form-label">category</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="category"
+                    formControlName="category"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal2()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateProduct(29); closeModal2()">Update Product</button>
+      </div>
+    </div>
+  </div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="openModal('custom-modal-1')">
+Create Product
+</button>
+
+<!-- Modal -->
+<div [ngClass]="modal" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col col-md-8" style="overflow-y: scroll; max-height: 100vh">
+            <form [formGroup]="productForm">
+              <div class="mb-3">
+                <label for="productName" class="form-label">productName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productName"
+                  formControlName="productName"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  formControlName="price"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="stock" class="form-label">stock</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stock"
+                  formControlName="stock"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  formControlName="description"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="img" class="form-label">image</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="img"
+                  formControlName="img"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">category</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="category"
+                  formControlName="category"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addProduct(); refresh(); closeModal()">Create Product</button>
+      </div>
+    </div>
+  </div>
+</div>
