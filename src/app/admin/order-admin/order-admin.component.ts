@@ -18,13 +18,13 @@ import _ from "lodash";
  * @title Drag&Drop connected sorting group
  */
 @Component({
-  selector: 'admin-orders',
-  templateUrl: 'admin-orders.component.html',
-  styleUrls: ['admin-orders.component.css'],
+  selector: 'order-admin',
+  templateUrl: 'order-admin.component.html',
+  styleUrls: ['order-admin.component.css'],
   standalone: true,
   imports: [CdkDrag, CdkDropList, CdkDropListGroup, CommonModule]
 })
-export class AdminOrdersComponent {
+export class OrderAdminComponent {
   order: Order[];
   cart: Cart;
   paid: string;
@@ -43,13 +43,12 @@ export class AdminOrdersComponent {
     this.orderService.getAllOrders().subscribe((result): any => {
       if (result) {
         this.order = result;
-
-        let grouped: any = this.order.reduce(
-          (result: any, currentValue: any) => {
-            (result[currentValue['status']] = result[currentValue['status']] || []).push(currentValue);
-             return result;
-          }, {});
-        // const grouped = (_.groupBy(this.order, 'status'))
+        // let grouped: any = this.order.reduce(
+        //   (result: any, currentValue: any) => {
+        //     (result[currentValue['status']] = result[currentValue['status']] || []).push(currentValue);
+        //      return result;
+        //   }, {});
+        const grouped = (_.groupBy(this.order, 'status'))
        this.grouped = grouped;
       }
     })

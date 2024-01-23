@@ -1,15 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ProductManagementService} from "../_services/product-management.service";
-import {product} from "../products/products.model";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
+import {product} from "../../products/products.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ProductAdminService} from "../../_services/product-admin.service";
 
 @Component({
-  selector: 'app-product-management',
-  templateUrl: './product-management.component.html',
-  styleUrls: ['./product-management.component.css']
+  selector: 'app-product-admin',
+  templateUrl: 'product-admin.component.html',
+  styleUrls: ['./product-admin.component.css']
 })
-export class ProductManagementComponent implements OnInit {
+export class ProductAdminComponent implements OnInit {
   modal='modal';
   modal2 = 'modal2';
   name = 'Angular';
@@ -27,11 +27,11 @@ export class ProductManagementComponent implements OnInit {
   });
   Product: product | any
 
-  constructor(private productManagementService: ProductManagementService, private modalService: NgbModal) {
+  constructor(private productAdminService: ProductAdminService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
-    this.productManagementService.getProducts().subscribe((result) => {
+    this.productAdminService.getProducts().subscribe((result) => {
       if (result) {
         this.Product = result
         console.log(result)
@@ -40,7 +40,7 @@ export class ProductManagementComponent implements OnInit {
   }
   addProduct(): void {
     const {productName, price, stock, description, img, category, id, createdAt, updatedAt} = this.productForm.value;
-    this.productManagementService.addProduct({
+    this.productAdminService.addProduct({
       productName,
       price,
       stock,
@@ -52,23 +52,23 @@ export class ProductManagementComponent implements OnInit {
       updatedAt
     }).subscribe()
   }
-deleteProduct(id: any): void {
-    this.productManagementService.deleteProducts(id).subscribe()
-}
-refresh(): void {
+  deleteProduct(id: any): void {
+    this.productAdminService.deleteProducts(id).subscribe()
+  }
+  refresh(): void {
     window.location.reload();
   }
-updateProduct(id: number): void {
-  const {productName, price, stock, description, img, category, createdAt, updatedAt} = this.productForm.value;
-  this.productManagementService.updateProducts({
-    productName,
-    price,
-    stock,
-    description,
-    img,
-    category
-  }, id).subscribe()
-}
+  updateProduct(id: number): void {
+    const {productName, price, stock, description, img, category, createdAt, updatedAt} = this.productForm.value;
+    this.productAdminService.updateProducts({
+      productName,
+      price,
+      stock,
+      description,
+      img,
+      category
+    }, id).subscribe()
+  }
 
   openModal(inp: string) {
     console.log(inp);
@@ -85,7 +85,7 @@ updateProduct(id: number): void {
     this.modal2='modal';
   }
 
-  protected readonly ProductManagementService = ProductManagementService;
+  protected readonly ProductAdminService = this.productAdminService;
   protected readonly ondblclick = ondblclick;
   protected readonly window = window;
 }

@@ -6,17 +6,18 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {BoardUserComponent} from './board-user/board-user.component';
 import {BoardModeratorComponent} from './board-moderator/board-moderator.component';
-import {BoardAdminComponent} from './board-admin/board-admin.component';
+import {BoardAdminComponent} from './admin/board-admin/board-admin.component';
 import {ProductsComponent} from "./products/products.component";
 import {CartComponent} from "./cart/cart.component";
 import {SuccessComponent} from "./success/success.component";
 import {OrdersComponent} from "./orders/orders.component";
-import {ProductManagementComponent} from "./product-management/product-management.component";
 import {StatisticComponent} from "./statistic/statistic.component";
 import {SearchComponent} from "./search/search.component";
 import {ModalComponent} from "./modal/modal.component";
-import {AdminOrdersComponent} from "./board-admin/admin-orders/admin-orders.component";
-import {AllOrdersComponent} from "./board-admin/all-orders/all-orders.component";
+import {OrderAdminComponent} from "./admin/order-admin/order-admin.component";
+import {AllOrdersComponent} from "./admin/all-orders/all-orders.component";
+import {ProductAdminComponent} from "./admin/product-admin/product-admin.component";
+import {UserAdminComponent} from "./admin/user-admin/user-admin.component";
 
 
 const routes: Routes = [
@@ -28,7 +29,6 @@ const routes: Routes = [
   {path: 'mod', component: BoardModeratorComponent},
   {path: 'admin', component: BoardAdminComponent},
   {path: 'products', component: ProductsComponent},
-  {path: 'products/panel', component: ProductManagementComponent},
   {path: 'products/:categoryName', component: ProductsComponent},
   {path: 'cart', component: CartComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -37,8 +37,10 @@ const routes: Routes = [
   {path: 'statistics', component: StatisticComponent},
   {path: 'search', component: SearchComponent},
   {path: 'modal', component: ModalComponent},
-  {path: 'admin/orders', component: AdminOrdersComponent},
-  {path: 'admin/all-orders', component: AllOrdersComponent}
+  {path: 'admin/orders', component: OrderAdminComponent},
+  {path: 'admin/all-orders', component: AllOrdersComponent},
+  {path: 'admin/products', component: ProductAdminComponent},
+  {path: 'admin/users', component: UserAdminComponent}
 ];
 
 @NgModule({
