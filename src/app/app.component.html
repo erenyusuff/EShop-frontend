@@ -1,0 +1,62 @@
+<div id="app">
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+      <a href="#" class="navbar-brand">EShop</a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="/products" class="nav-link" routerLink="products">Products </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li class="nav-item" *ngIf="showModeratorBoard">
+          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+        </li>
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" *ngIf="isLoggedIn" routerLink="profile">Profile</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item">{{ this.username }}</a>
+        </li>
+        <form class="form-inline my- my-lg-1">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-1 my-sm-0" type="submit">Search</button>
+        </form>
+
+
+        <li class="nav-item">
+          <a href="/cart" class="nav-link" routerLink="cart">
+            <img src="assets/img.png" width="24rem">
+          </a>
+        </li>
+
+
+
+        <li class="nav-item">
+          <a href="/orders" class="nav-link" routerLink="orders">Orders</a>
+        </li>
+
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <router-outlet></router-outlet>
+  </div>
+

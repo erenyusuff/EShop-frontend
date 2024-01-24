@@ -1,0 +1,37 @@
+<div class="Electronic">
+  <div class="container d-flex" style="padding-top: 20px">
+    <div class="container d-flex flex-column">
+      <div class="" *ngFor="let cartProduct of cart?.cartProducts">
+        <div class="">
+          <div class="card-columns text-white bg-dark" style="border-radius: 1rem">
+            <img class="card-img-bottom col my-4 " style="width: 13rem;height: 7rem;"
+                 src="{{cartProduct.product.img}}"
+                 alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{cartProduct.product.productName}}</h5>
+              <p class="card-text">{{cartProduct.product.price * cartProduct.quantity}} $</p>
+              <a href="/api/cart" class="btn btn-primary btn-sl">features</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><font size="4">Cart</font></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let cartProduct of cart?.cartProducts">
+          <li class="list-group-item">{{cartProduct.product.productName}} x{{cartProduct.quantity}}</li>
+        </ul>
+        <div class="card-body">
+          <a (click)="buyCart()" class="btn btn-primary" style="width: 250px">Buy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
