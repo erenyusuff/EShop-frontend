@@ -2,8 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {CartService} from "../_services/cart.service";
 import {Cart, CartProducts, product} from "./cart.model";
 import {Router} from "@angular/router";
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-
+import _default from "chart.js/dist/plugins/plugin.tooltip";
+import type = _default.defaults.animations.numbers.type;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,14 +13,23 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class CartComponent implements OnInit {
   cart: Cart
-  cartProducts: CartProducts
+  cartProducts: CartProducts | any
   product: product
 
   closeResult: string;
 
-  constructor(private cartService: CartService, private route: Router, private modalService: NgbModal) {
+  constructor(private cartService: CartService, private route: Router, private modalService: NgbModal, private snackBar: MatSnackBar) {
   }
+  snackBarOpener(message: string, action?: string) {
+    this.snackBar.open(message, action,  {
+      duration: 10000,
+      panelClass: ['mat-toolbar'],
+    }); this.route.navigate(["orders"])
 
+  }
+  openSnackBar() {
+    this.snackBarOpener('Payment is successful. Redirecting to orders page');
+  }
   ngOnInit(): void {
     this.cartService.getCartProducts().subscribe((result) => {
       if (result) {
@@ -31,13 +42,15 @@ export class CartComponent implements OnInit {
   buyCart() {
     this.cartService.buyCart(this.cart.id).subscribe((result) => {
       if (result) {
-        this.route.navigate(["bought"])
         console.log(result)
       }
     })
   }
 
 
+  showAlert() {
+
+  }
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -57,5 +70,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  protected readonly alert = alert;
+  protected readonly onwaiting = onwaiting;
 }
 

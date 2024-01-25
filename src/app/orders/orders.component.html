@@ -1,12 +1,15 @@
 <div class="Electronic" xmlns="http://www.w3.org/1999/html">
   <div style="padding-top: 40px" class="container">
-    <div class="card"*ngFor="let item of order">
-      <h5 class="card-header"><font size="4"> {{item.id}} Nolu sipariş</font></h5>
-      <div class="card-body">
-        <h5 class="card-title"><font  size="3">{{item.price}} ₺</font> </h5>
-        <p class="card-text"></p>
-        <a (click)="item.cart.cartProducts.cartId" href="#" class="btn btn-primary">Sipariş Detayları</a>
+    <div *ngFor="let item of order">
+      <div class="card">
+        <h5 class="card-header"><font size="4"> {{item.id}} Nolu sipariş</font></h5>
+        <div class="card-body">
+          <h5 class="card-title"><font size="3">{{item.price}} ₺</font> </h5>
+          <p class="card-text"></p>
+          <a (click)="item.cart.cartProducts.cartId" href="#" class="btn btn-primary">Sipariş Detayları</a>
+        </div>
       </div>
+      <br> <!-- Burada bir satır ekledik -->
     </div>
   </div>
 </div>
