@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -25,7 +25,7 @@ import {UserAdminComponent} from "../user-admin/user-admin.component";
   standalone: true,
   imports: [CdkDrag, CdkDropList, CdkDropListGroup, CommonModule]
 })
-export class OrderAdminComponent {
+export class OrderAdminComponent implements OnInit{
   order: Order[];
   cart: Cart;
   paid: string;
@@ -44,7 +44,6 @@ export class OrderAdminComponent {
   statuses = ['paid', 'preparing', 'waiting']
 
   ngOnInit(): void {
-
     this.orderService.getAllOrders().subscribe((result): any => {
       if (result) {
         this.order = result;
@@ -60,9 +59,11 @@ export class OrderAdminComponent {
   }
 
   drop(event: CdkDragDrop<any>) {
-    console.log('event', event);
+    return;
+    console.log(':::Evnet', event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log(':::in if');
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -73,11 +74,15 @@ export class OrderAdminComponent {
     }
   }
 
-  changeStatus(id: number, newStatus: string) {
-    this.orderService.updateOrder({
-      newStatus,
-      id
-    }).subscribe()
+  changeStatus(event: CdkDragDrop<any>) {
+    if (event.container.id == "cdk-drop-list-2") {
+      console.log('test')
+      const status = "waiting"
+      this.orderService.updateOrder({
+        status,
+        id: 2
+      }).subscribe()
+    }
   }
 
   protected readonly group = group;

@@ -100,10 +100,10 @@
             <h2 style="justify-content: center">{{status}}</h2>
             <div
               cdkDropList
-              [cdkDropListData]="grouped"
+              [cdkDropListData]="grouped[status]"
               class="example-list"
               (cdkDropListDropped)="drop($event);">
-              <div *ngFor="let item of grouped[status]" class="example-box" cdkDrag>{{item.id}} <button (click)="changeStatus(item.id, status)"></button></div>
+              <div *ngFor="let item of grouped[status]" class="example-box" cdkDrag>{{item.id}}</div>
             </div>
           </div>
         </div>
