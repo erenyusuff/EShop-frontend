@@ -65,13 +65,10 @@
               <i class="fs-4 bi-people text-white"></i> <span (click)="toggleSubMenu()" class="ms-1 d-none d-sm-inline text-white">Customers</span></a>
             <ul class="nav flex-column" *ngIf="isSubMenuOpen">
               <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/create">Create User</a>
+                <a class="nav-link text-white" href="admin/user-create">Create User</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="admin/users/edit" >Edit User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/table">Table</a>
               </li>
             </ul>
           </li>
@@ -97,6 +94,40 @@
       </div>
     </div>
     <div class="col py-3">
+
+
+      <form [formGroup]="userForm">
+        <div class="form-group">
+          <label for="userName" class="form-label">Username</label>
+          <input class="form-control" id="userName" formControlName="userName" placeholder="Enter Username">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+          <label class="mr-sm-2" for="role">Role</label>
+          <select class="custom-select mr-sm-2" id="role" formControlName="role">
+            <option selected>Choose...</option>
+            <option value="User" formControlName="role">User</option>
+            <option value="Admin" formControlName="role">Admin</option>
+            <option value="Moderator" formControlName="role">Moderator</option>
+          </select>
+        </div>
+
+
+        <button  type="submit" class="btn btn-primary" (click)="addUser()">Submit</button>
+
+      </form>
+
 
 
       <head>

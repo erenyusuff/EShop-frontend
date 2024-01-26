@@ -25,22 +25,26 @@ import {UserAdminComponent} from "../user-admin/user-admin.component";
   standalone: true,
   imports: [CdkDrag, CdkDropList, CdkDropListGroup, CommonModule]
 })
-export class OrderAdminComponent implements OnInit{
+export class OrderAdminComponent implements OnInit {
   order: Order[];
   cart: Cart;
   paid: string;
   grouped: any;
+  aptalAdam: Order[];
+  aptalAdam2: Order[];
 
   constructor(
     private orderService: OrdersService,
     private cdRef: ChangeDetectorRef
   ) {
   }
+
   isSubMenuOpen: boolean = false;
 
   toggleSubMenu() {
     this.isSubMenuOpen = !this.isSubMenuOpen;
   }
+
   statuses = ['paid', 'preparing', 'waiting']
 
   ngOnInit(): void {
@@ -53,17 +57,21 @@ export class OrderAdminComponent implements OnInit{
         //      return result;
         //   }, {});
         const grouped = (_.groupBy(this.order, 'status'))
-       this.grouped = grouped;
+
+        console.log('group', grouped)
+        this.aptalAdam = grouped['waiting'];
+        this.aptalAdam2 = grouped['paid'];
+        this.grouped = grouped;
       }
     })
   }
 
-  drop(event: CdkDragDrop<any>) {
-    return;
-    console.log(':::Evnet', event);
+  drop(event: CdkDragDrop<any>, status: string) {
+    console.log(':::event', event);
+    console.log(':::stat', status);
+    console.log(':: moved element', event.previousContainer.data[event.previousIndex]);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      console.log(':::in if');
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -71,18 +79,21 @@ export class OrderAdminComponent implements OnInit{
         event.previousIndex,
         event.currentIndex,
       );
+      const movedItem = event.container.data[event.currentIndex];
+      this.changeStatus(movedItem, status)
+      console.log(':: moved element list',);
+
     }
+
   }
 
-  changeStatus(event: CdkDragDrop<any>) {
-    if (event.container.id == "cdk-drop-list-2") {
-      console.log('test')
-      const status = "waiting"
-      this.orderService.updateOrder({
-        status,
-        id: 2
-      }).subscribe()
-    }
+  changeStatus(moved: Order, status: string) {
+
+    const id = moved.id;
+    this.orderService.updateOrder({
+      status,
+      id: id
+    }).subscribe()
   }
 
   protected readonly group = group;

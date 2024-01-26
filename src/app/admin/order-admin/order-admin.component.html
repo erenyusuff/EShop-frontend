@@ -63,13 +63,10 @@
               <i class="fs-4 bi-people text-white"></i> <span (click)="toggleSubMenu()" class="ms-1 d-none d-sm-inline text-white">Customers</span></a>
             <ul class="nav flex-column" *ngIf="isSubMenuOpen">
               <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/create">Create User</a>
+                <a class="nav-link text-white" href="admin/user-create">Create User</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="admin/users/edit" >Edit User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/table">Table</a>
               </li>
             </ul>
           </li>
@@ -94,15 +91,15 @@
     </div>
     <div class="col py-3">
 
-      <div style="display: flex;" class="col py-3" *ngIf="grouped">
-        <div *ngFor="let status of statuses" cdkDropListGroup>
+      <div style="display: flex;" class="col py-3" *ngIf="grouped" cdkDropListGroup>
+        <div *ngFor="let  status of statuses" >
           <div class="example-container">
             <h2 style="justify-content: center">{{status}}</h2>
             <div
               cdkDropList
               [cdkDropListData]="grouped[status]"
               class="example-list"
-              (cdkDropListDropped)="drop($event);">
+              (cdkDropListDropped)="drop($event, status);">
               <div *ngFor="let item of grouped[status]" class="example-box" cdkDrag>{{item.id}}</div>
             </div>
           </div>
