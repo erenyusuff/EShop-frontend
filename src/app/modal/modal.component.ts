@@ -1,28 +1,40 @@
 import { Component } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import {FormControl, FormGroup} from "@angular/forms";
+import {ProductAdminService} from "../_services/product-admin.service";
 
 @Component({
-  selector: 'ngbd-modal-config',
-  standalone: false,
-  templateUrl: 'modal.component.html',
-  // add NgbModalConfig and NgbModal to the component providers
-  providers: [NgbModalConfig, NgbModal],
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
 })
 export class ModalComponent {
-  constructor(
-    config: NgbModalConfig,
-    private modalService: NgbModal,
-  ) {
-    // customize default values of modals used by this component tree
-    config.backdrop = 'static';
-    config.keyboard = true;
+  productForm = new FormGroup({
+    productName: new FormControl(''),
+    price: new FormControl(''),
+    stock: new FormControl(''),
+    description: new FormControl(''),
+    img: new FormControl(''),
+    category: new FormControl(''),
+    id: new FormControl(''),
+    createdAt: new FormControl(''),
+    updatedAt: new FormControl(''),
+  });
+  constructor(public modalRef: MdbModalRef<ModalComponent>, private productAdminService: ProductAdminService) {}
+
+  addProduct(): void {
+    const {productName, price, stock, description, img, category, id, createdAt, updatedAt} = this.productForm.value;
+    this.productAdminService.addProduct({
+      productName,
+      price,
+      stock,
+      description,
+      img,
+      category,
+      id,
+      createdAt,
+      updatedAt
+    }).subscribe()
   }
 
-  open(content: any) {
-    this.modalService.open(content);
-  }
 
-  // close(content: any) {
-  //   this.modalService.
-  // }
 }

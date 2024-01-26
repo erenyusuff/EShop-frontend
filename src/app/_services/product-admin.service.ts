@@ -19,9 +19,9 @@ export class ProductAdminService {
     return this.http.get<product>(environment.api + '/products');
   }
 
-  updateProducts(payload:any, id: number): Observable<any> {
+  updateProducts(payload:any): Observable<any> {
     return this.http.patch(
-      environment.api + '/products/'+id+'',
+      environment.api + '/products',
       payload,
       httpOptions
     )

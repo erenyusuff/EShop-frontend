@@ -94,9 +94,9 @@
     <div class="col py-3">
 
 
-      <div class="container">
-        <!--         <button (click)="deleteProduct(item.id); refresh()">Delete</button>-->
 
+
+      <div class="container">
         <table class="table table-bordered" id="table-data">
           <thead>
           <tr>
@@ -106,55 +106,40 @@
             <th>Description</th>
             <th>Price</th>
             <th>Stock</th>
+            <th style="width: 10px"></th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let item of Product">
-            <td style="padding-top: 35px;">{{ item.id }}</td>
-            <td style="padding-top: 35px;">{{ item.productName}}</td>
-            <td style="padding-top: 35px;">{{ item.category }}</td>
-            <td style="padding-top: 35px;">{{ item.description }}</td>
-            <td style="padding-top: 35px;">{{ item.price }}</td>
-
-
-            <td style="width: 240px; height: 2px; padding-bottom: 30px">
-              <div class="form-outline" style="width: 240px; display: flex;">
-                <form [formGroup]="updateProductForm">
-                  <label class="form-label" for="stock"></label>
-                <input
-                  type="number"
-                  placeholder="{{item.stock}}"
-                  value="{{item.stock}}"
-                  class="form-control"
-                  id="stock"
-                  formControlName="stock"
-                />
-                </form>
-                <div style="padding-left:10px; padding-top: 16px ">
-                <button type="button" style="width: 65px; height: 40px " class="btn btn-primary bor" (click)="updateProduct(item.id); refresh()">Save</button></div>
-              <div style="padding-left: 10px; padding-top: 16px"><button type="button" style="width: 65px; height: 40px " class="btn btn-primary" (click)="deleteProduct(item.id); refresh()">Delete</button>
-              </div>
-              </div>
-            </td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.productName}}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.stock }}</td>
+            <button type="button"  data-toggle="modal2" data-target="#exampleModal"
+                    (click)="openModal2('custom-modal-1',item.productName,item.price, item.stock, item.description, item.img, item.category, item.id)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
           </tr>
           </tbody>
         </table>
 
-
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                (click)="openModal('custom-modal-1')">
+                (click)="openModalReal()">
           Create Product
         </button>
 
-        <!-- Modal -->
-        <div [ngClass]="modal" tabindex="-1" role="dialog">
 
+
+
+        <div [ngClass]="modal2" tabindex="-2" role="dialog" *ngIf="showModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <div class="row">
                   <div style=" width: 490px">
-                    <form [formGroup]="productForm">
+                    <form [formGroup]="updateProductForm">
                       <div class="mb-3">
                         <label for="productName" class="form-label">productName</label>
                         <input
@@ -213,8 +198,8 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
-              <button type="button" class="btn btn-primary" (click)="addProduct(); refresh(); closeModal()">Create
+              <button type="button" class="btn btn-secondary" data-dismiss="modal2" (click)="closeModal2()">Close</button>
+              <button type="button" class="btn btn-primary" (click)="updateProduct(); refresh(); closeModal2()">Update
                 Product
               </button>
             </div>
