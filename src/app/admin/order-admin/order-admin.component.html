@@ -100,7 +100,7 @@
               [cdkDropListData]="grouped[status]"
               class="example-list"
               (cdkDropListDropped)="drop($event, status);">
-              <div *ngFor="let item of grouped[status]" class="example-box" cdkDrag>{{item.id}}</div>
+              <div *ngFor="let item of grouped[status]" class="example-box" cdkDrag><font>{{item.user.userName}} adlı kullanıcının {{item.id}} nolu siparişi</font></div>
             </div>
           </div>
         </div>

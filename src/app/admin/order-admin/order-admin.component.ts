@@ -28,14 +28,10 @@ import {UserAdminComponent} from "../user-admin/user-admin.component";
 export class OrderAdminComponent implements OnInit {
   order: Order[];
   cart: Cart;
-  paid: string;
   grouped: any;
-  aptalAdam: Order[];
-  aptalAdam2: Order[];
 
   constructor(
     private orderService: OrdersService,
-    private cdRef: ChangeDetectorRef
   ) {
   }
 
@@ -45,7 +41,7 @@ export class OrderAdminComponent implements OnInit {
     this.isSubMenuOpen = !this.isSubMenuOpen;
   }
 
-  statuses = ['paid', 'preparing', 'waiting']
+  statuses = ['waiting', 'preparing', 'shipping']
 
   ngOnInit(): void {
     this.orderService.getAllOrders().subscribe((result): any => {
@@ -59,8 +55,6 @@ export class OrderAdminComponent implements OnInit {
         const grouped = (_.groupBy(this.order, 'status'))
 
         console.log('group', grouped)
-        this.aptalAdam = grouped['waiting'];
-        this.aptalAdam2 = grouped['paid'];
         this.grouped = grouped;
       }
     })

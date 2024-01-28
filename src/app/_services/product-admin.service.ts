@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {product} from "../products/products.model";
 import {Observable} from "rxjs";
@@ -28,7 +28,11 @@ export class ProductAdminService {
   }
 
   deleteProducts(id: number) {
-    return this.http.delete<product>(environment.api + '/products/'+id+'');
+    return this.http.delete<product>(environment.api + '/products/'+id);
+  }
+
+  productList(page: number){
+    return this.http.get<product>(environment.api + '/products/page?page='+page);
   }
   addProduct(payload:any ): Observable<any> {
     return this.http.post(

@@ -107,20 +107,22 @@
             <th>Price</th>
             <th>Stock</th>
             <th style="width: 10px"></th>
+            <th style="width: 10px"></th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let item of Product">
+          <tr *ngFor="let item of productList">
             <td>{{ item.id }}</td>
             <td>{{ item.productName}}</td>
             <td>{{ item.category }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.price }}</td>
             <td>{{ item.stock }}</td>
-            <button type="button"  data-toggle="modal2" data-target="#exampleModal"
-                    (click)="openModal2('custom-modal-1',item.productName,item.price, item.stock, item.description, item.img, item.category, item.id)">
+            <td><button type="button" class="btn btn-primary" data-toggle="modal2" data-target="#exampleModal"
+                    (click)="openModalEdit(item.productName, item.price, item.stock, item.description, item.img, item.category, item.id)">
               <i class="bi bi-pencil-square"></i>
-            </button>
+            </button></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteProduct(item.id); refresh()"><i class="bi bi-trash"></i></button></td>
           </tr>
           </tbody>
         </table>
@@ -130,83 +132,23 @@
           Create Product
         </button>
 
-
-
-
-        <div [ngClass]="modal2" tabindex="-2" role="dialog" *ngIf="showModal">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <div class="row">
-                  <div style=" width: 490px">
-                    <form [formGroup]="updateProductForm">
-                      <div class="mb-3">
-                        <label for="productName" class="form-label">productName</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="productName"
-                          formControlName="productName"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="price" class="form-label">price</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="price"
-                          formControlName="price"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="stock" class="form-label">stock</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="stock"
-                          formControlName="stock"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="description" class="form-label">description</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="description"
-                          formControlName="description"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="img" class="form-label">image</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="img"
-                          formControlName="img"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="category" class="form-label">category</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="category"
-                          formControlName="category"
-                        />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal2" (click)="closeModal2()">Close</button>
-              <button type="button" class="btn btn-primary" (click)="updateProduct(); refresh(); closeModal2()">Update
-                Product
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="admin/products/1">1</a></li>
+            <li class="page-item"><a class="page-link" href="admin/products/2">2</a></li>
+            <li class="page-item"><a class="page-link" href="admin/products/3">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
 
       <head>
         <meta charset="utf-8">

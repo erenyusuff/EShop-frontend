@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h5 class="modal-title text-center" id="exampleModalLabel"><h1>Update Product</h1></h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef2.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div style=" width: 470px">
+                <form [formGroup]="updateProductForm">
+                  <div class="mb-3">
+                    <label for="productName" class="form-label">productName</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="productName"
+                      formControlName="productName"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="price" class="form-label">price</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="price"
+                      formControlName="price"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="stock" class="form-label">stock</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="stock"
+                      formControlName="stock"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">description</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="description"
+                      formControlName="description"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="img" class="form-label">image</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="img"
+                      formControlName="img"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="category" class="form-label">category</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="category"
+                      formControlName="category"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef2.close()">
+      Close
+    </button>
+    <button type="button" class="btn btn-primary" (click)="updateProduct(); modalRef2.close()">Save changes</button>
+  </div>

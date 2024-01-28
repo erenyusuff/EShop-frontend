@@ -24,6 +24,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ModalComponent} from "./modal/modal.component";
 import {ProductAdminComponent} from "./admin/product-admin/product-admin.component";
 import {MdbModalModule} from "mdb-angular-ui-kit/modal";
+import {Modal2Component} from "./modal2/modal2.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MdbModalModule} from "mdb-angular-ui-kit/modal";
     StatisticComponent,
     SearchComponent,
     ModalComponent,
-    ProductAdminComponent
+    ProductAdminComponent,
+    Modal2Component
 
 
   ],
