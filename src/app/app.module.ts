@@ -25,6 +25,9 @@ import {ModalComponent} from "./modal/modal.component";
 import {ProductAdminComponent} from "./admin/product-admin/product-admin.component";
 import {MdbModalModule} from "mdb-angular-ui-kit/modal";
 import {Modal2Component} from "./modal2/modal2.component";
+import {DashboardAdminComponent} from "./admin/dashboard-admin/dashboard-admin.component";
+import {NgxsModule} from "@ngxs/store";
+import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import {Modal2Component} from "./modal2/modal2.component";
     SearchComponent,
     ModalComponent,
     ProductAdminComponent,
-    Modal2Component
+    Modal2Component,
+    DashboardAdminComponent
 
 
   ],
@@ -57,9 +61,14 @@ import {Modal2Component} from "./modal2/modal2.component";
     ReactiveFormsModule,
     NoopAnimationsModule,
     NgbModule,
-    MdbModalModule
+    MdbModalModule,
+    NgxsModule.forRoot([]),
+    NgxsStoragePluginModule.forRoot()
   ],
   providers: [httpInterceptorProviders],
+  exports: [
+    BoardAdminComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
