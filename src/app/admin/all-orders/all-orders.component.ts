@@ -14,7 +14,7 @@ import {CommonModule} from "@angular/common";
 })
 export class AllOrdersComponent {
   fileName = 'ExcelSheet.xlsx';
-  order: Order[]
+  order: any
   cart: Cart
   constructor(private orderService: OrdersService) {
   }
@@ -27,17 +27,14 @@ export class AllOrdersComponent {
 
     this.orderService.getAllOrders().subscribe((result) => {
       if (result) {
-        this.order = result;
-        console.log(result)
+        this.order = result.data;
       }
     })
   }
   exportexcel() {
-    /**passing- table id**/
     let data = document.getElementById('table-data');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
 
-    /**Generate workbook and add the worksheet**/
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 

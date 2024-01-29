@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  productList: undefined | product[]
+  productList: undefined
   a: string | null = ''
 
   constructor(
@@ -23,9 +23,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.a = this.route.snapshot.paramMap.get("categoryName")
-    this.productService.productList(this.a).subscribe((result) => {
+    this.productService.productList(this.a).subscribe((result: any) => {
       if (result) {
-        this.productList = result;
+        this.productList = result.data;
       }
     })
   }

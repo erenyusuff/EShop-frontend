@@ -30,9 +30,9 @@ export class ProductAdminComponent implements OnInit {
 
   ngOnInit(): any {
     this.a = this.route.snapshot.paramMap.get("page")
-    this.productAdminService.productList(this.a).subscribe((result) => {
+    this.productAdminService.productList(this.a).subscribe((result: any) => {
       if (result) {
-        this.productList = result;
+        this.productList = result.data;
       }
     })
     return this.productList

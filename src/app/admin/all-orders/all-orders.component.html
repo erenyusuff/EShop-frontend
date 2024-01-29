@@ -108,16 +108,32 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of order">
-            <td>{{ item.id }}</td>
+            <td>{{ item.id}}</td>
             <td>{{ item.status}}</td>
-            <td>{{ item.price }}</td>
+            <td>{{ item.id }}</td>
             <td>{{ item.cartId }}</td>
           </tr>
           </tbody>
         </table>
       </div>
 
-
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="admin/all-orders/1">1</a></li>
+          <li class="page-item"><a class="page-link" href="admin/all-orders/2">2</a></li>
+          <li class="page-item"><a class="page-link" href="admin/all-orders/3">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

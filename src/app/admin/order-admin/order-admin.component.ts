@@ -26,7 +26,7 @@ import {UserAdminComponent} from "../user-admin/user-admin.component";
   imports: [CdkDrag, CdkDropList, CdkDropListGroup, CommonModule]
 })
 export class OrderAdminComponent implements OnInit {
-  order: Order[];
+  order: any
   cart: Cart;
   grouped: any;
 
@@ -52,10 +52,9 @@ export class OrderAdminComponent implements OnInit {
         //     (result[currentValue['status']] = result[currentValue['status']] || []).push(currentValue);
         //      return result;
         //   }, {});
-        const grouped = (_.groupBy(this.order, 'status'))
-
-        console.log('group', grouped)
+        const grouped = (_.groupBy(this.order.data, 'status'))
         this.grouped = grouped;
+        console.log('group', this.grouped)
       }
     })
   }

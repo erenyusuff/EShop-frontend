@@ -18,7 +18,7 @@ getMyOrders() {
   return this.http.get<Order>(environment.api + '/orders/myOrders');
 }
 getAllOrders() {
-  return this.http.get<Order[]>(environment.api + '/orders/all');
+  return this.http.get<any>(environment.api + '/orders/all');
 }
 
 updateOrder(data: any) {
