@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   }
   snackBarOpener(message: string, action?: string) {
     this.snackBar.open(message, action,  {
-      duration: 10000,
+      duration: 3000,
       panelClass: ['mat-toolbar'],
     }); this.route.navigate(["orders"])
 

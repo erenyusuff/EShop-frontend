@@ -7,6 +7,7 @@ export interface User {
   gender: string,
   memberGsmNumber: number,
   password: string,
+  role: number
 }
 
 

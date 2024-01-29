@@ -29,6 +29,9 @@ export class UserService {
     return this.http.get(environment.api + '/admin/kontrol', {responseType: 'text'})
   }
 
+  getMe(): Observable<any> {
+    return this.http.get(environment.api + '/auth/profile')
+  }
   addUser(payload: any): Observable<any> {
     return this.http.post(environment.api + '/users', payload, httpOptions)
   }

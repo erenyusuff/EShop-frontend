@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../_services/storage.service';
+import {Component, OnInit} from '@angular/core';
+import {StorageService} from '../_services/storage.service';
+import {UserService} from "../_services/user.service";
+import {User} from "../board-user/user.model";
 
 @Component({
   selector: 'app-profile',
@@ -7,11 +9,17 @@ import { StorageService } from '../_services/storage.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: any;
+  currentUser: User;
 
-  constructor(private storageService: StorageService) { }
+  constructor(private userService: UserService) {
+  }
 
-  ngOnInit(): void {
-    this.currentUser = this.storageService.getUser();
+  ngOnInit(): any {
+    this.userService.getMe().subscribe((result) => {
+      console.log(result)
+      if (result) {
+        this.currentUser = result;
+      }
+    })
   }
 }
