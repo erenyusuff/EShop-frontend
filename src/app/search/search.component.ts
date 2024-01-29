@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {product} from "../cart/cart.model";
+import {Product} from "../cart/cart.model";
 import {ProductService} from "../_services/product.service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -11,7 +11,7 @@ import {environment} from "../../environments/environment";
 })
 export class SearchComponent implements OnInit {
   searchTerm = '';
-  products: product[] = [];
+  products: Product[] = [];
   term = '';
 
   constructor(private productService: ProductService, private http: HttpClient) {
@@ -19,8 +19,8 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get<product[]>(environment.api + '/products')
-      .subscribe((data: product[]) => {
+    this.http.get<Product[]>(environment.api + '/products')
+      .subscribe((data: Product[]) => {
         this.products = data;
       });
   }

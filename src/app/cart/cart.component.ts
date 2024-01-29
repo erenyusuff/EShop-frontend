@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {CartService} from "../_services/cart.service";
-import {Cart, CartProducts, product} from "./cart.model";
+import {Cart, CartProducts, Product} from "./cart.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -14,7 +14,7 @@ import type = _default.defaults.animations.numbers.type;
 export class CartComponent implements OnInit {
   cart: Cart
   cartProducts: CartProducts | any
-  product: product
+  product: Product
 
   closeResult: string;
 

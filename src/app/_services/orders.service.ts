@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {Order} from "../orders/order.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Cart} from "../cart/cart.model";
 
 
 const httpOptions = {
@@ -15,7 +16,7 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
 
 getMyOrders() {
-  return this.http.get<Order>(environment.api + '/orders/myOrders');
+  return this.http.get<any>(environment.api + '/orders/myOrders');
 }
 getAllOrders() {
   return this.http.get<any>(environment.api + '/orders/all');

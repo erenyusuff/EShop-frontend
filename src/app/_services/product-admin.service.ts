@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {product} from "../products/products.model";
+import {Product} from "../products/products.model";
 import {Observable} from "rxjs";
 import _default from "chart.js/dist/plugins/plugin.tooltip";
 import numbers = _default.defaults.animations.numbers;
@@ -16,7 +16,7 @@ export class ProductAdminService {
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    return this.http.get<product>(environment.api + '/products');
+    return this.http.get<Product>(environment.api + '/products');
   }
 
   updateProducts(payload:any): Observable<any> {
@@ -28,11 +28,11 @@ export class ProductAdminService {
   }
 
   deleteProducts(id: number) {
-    return this.http.delete<product>(environment.api + '/products/'+id);
+    return this.http.delete<Product>(environment.api + '/products/'+id);
   }
 
   productList(page: number){
-    return this.http.get<product>(environment.api + '/products/page?page='+page);
+    return this.http.get<Product>(environment.api + '/products/page?page='+page);
   }
   addProduct(payload:any ): Observable<any> {
     return this.http.post(

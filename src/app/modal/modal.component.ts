@@ -35,6 +35,4 @@ export class ModalComponent {
       updatedAt
     }).subscribe()
   }
-
-
 }

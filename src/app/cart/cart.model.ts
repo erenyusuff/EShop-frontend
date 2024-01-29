@@ -15,9 +15,9 @@ export interface CartProducts {
   productName: string;
   quantity: number;
   price: number;
-  product: product;
+  product: Product;
 }
-export interface product {
+export interface Product {
   "productName": string;
   "price": number;
   "stock": number;

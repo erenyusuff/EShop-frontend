@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
-import {product} from "../../products/products.model";
+import {Product} from "../../products/products.model";
 import {ProductAdminService} from "../../_services/product-admin.service";
 import {UserAdminComponent} from "../user-admin/user-admin.component";
 import {ModalComponent} from "../../modal/modal.component";
@@ -14,13 +14,13 @@ import {result} from "lodash";
   styleUrls: ['./product-admin.component.css']
 })
 export class ProductAdminComponent implements OnInit {
-  productList: product | any
+  productList: Product | any
   modalRef: MdbModalRef<ModalComponent> | null = null;
   modalRef2: MdbModalRef<Modal2Component> | null = null;
   modal = 'modal';
   name = 'Angular';
   @ViewChild('myModal') myModal: ElementRef;
-  Product: product | any
+  Product: Product | any
   a: any
   constructor(private productAdminService: ProductAdminService, private modalService: MdbModalService, private route: ActivatedRoute) {
 

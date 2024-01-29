@@ -44,6 +44,7 @@ export class OrderAdminComponent implements OnInit {
   statuses = ['waiting', 'preparing', 'shipping']
 
   ngOnInit(): void {
+
     this.orderService.getAllOrders().subscribe((result): any => {
       if (result) {
         this.order = result;
@@ -54,18 +55,24 @@ export class OrderAdminComponent implements OnInit {
         //   }, {});
         const grouped = (_.groupBy(this.order.data, 'status'))
         this.grouped = grouped;
+        this.statuses.map(i => {
+          this.grouped[i] = this.grouped[i] ? this.grouped[i] : [];
+        })
         console.log('group', this.grouped)
       }
     })
   }
 
   drop(event: CdkDragDrop<any>, status: string) {
-    console.log(':::event', event);
-    console.log(':::stat', status);
-    console.log(':: moved element', event.previousContainer.data[event.previousIndex]);
+
+    console.log(':::event: ', event);
+    console.log(':::status: ', status);
+    console.log(':::moved element: ', event.previousContainer.data[event.previousIndex]);
     if (event.previousContainer === event.container) {
+      console.log('ayni container')
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      console.log('farkli container')
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -74,14 +81,10 @@ export class OrderAdminComponent implements OnInit {
       );
       const movedItem = event.container.data[event.currentIndex];
       this.changeStatus(movedItem, status)
-      console.log(':: moved element list',);
-
     }
-
   }
 
   changeStatus(moved: Order, status: string) {
-
     const id = moved.id;
     this.orderService.updateOrder({
       status,

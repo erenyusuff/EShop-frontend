@@ -28,6 +28,7 @@ import {Modal2Component} from "./modal2/modal2.component";
 import {DashboardAdminComponent} from "./admin/dashboard-admin/dashboard-admin.component";
 import {NgxsModule} from "@ngxs/store";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
+import {DetailModalComponent} from "./detail-modal/detail-modal.component";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
     ModalComponent,
     ProductAdminComponent,
     Modal2Component,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    DetailModalComponent
 
 
   ],
