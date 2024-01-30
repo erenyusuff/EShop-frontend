@@ -23,7 +23,8 @@ getAllOrders() {
   return this.http.get<any>(environment.api + '/orders/all');
 }
 
-  getAllOrdersPaged(page: number){
+  getAllOrdersPaged(page: any){
+    console.log(page)
     return this.http.get<any>(environment.api + '/orders/page?page='+page);
   }
 updateOrder(data: any) {

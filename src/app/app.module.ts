@@ -32,6 +32,7 @@ import {DetailModalComponent} from "./detail-modal/detail-modal.component";
 import {ProductState, ProductStateModel} from "./products/products.state";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {OrdersState} from "./orders/orders.state";
 
 @NgModule({
   declarations: [
@@ -68,10 +69,10 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
     NgbModule,
     MdbModalModule,
     NgxsModule.forRoot([
-      ProductState
+      ProductState, OrdersState
     ]),
     NgxsStoragePluginModule.forRoot({
-      key: [ProductState],
+      key: [ProductState, OrdersState],
       }
     )
     // NgxsReduxDevtoolsPluginModule.forRoot(),

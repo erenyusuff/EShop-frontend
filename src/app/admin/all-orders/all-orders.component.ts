@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as XLSX from 'xlsx';
 import {Order} from "../../orders/order.model";
 import {Cart} from "../../cart/cart.model";
 import {OrdersService} from "../../_services/orders.service";
 import {CommonModule} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
+import {GetProducts} from "../../products/products.action";
+import {Select, Store} from "@ngxs/store";
+import {OrdersState} from "../../orders/orders.state";
+import {Observable} from "rxjs";
+import {GetOrders} from "../../orders/orders.action";
 
 @Component({
   selector: 'app-all-orders',
@@ -13,12 +18,14 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './all-orders.component.html',
   styleUrl: './all-orders.component.css'
 })
-export class AllOrdersComponent {
+export class AllOrdersComponent implements OnInit {
   fileName = 'ExcelSheet.xlsx';
-  order: any
+  orders: any
   cart: Cart
   a: any
-  constructor(private orderService: OrdersService, private route: ActivatedRoute) {
+  @Select(OrdersState.getOrders)
+  orders$: Observable<Order[]>;
+  constructor(private orderService: OrdersService, private route: ActivatedRoute, private store: Store) {
   }
   isSubMenuOpen: boolean = false;
 
@@ -26,15 +33,26 @@ export class AllOrdersComponent {
     this.isSubMenuOpen = !this.isSubMenuOpen;
   }
 
-  ngOnInit(): any {
-    this.a = this.route.snapshot.paramMap.get("page")
-    console.log(this.a)
-    this.orderService.getAllOrdersPaged(this.a).subscribe((result: any) => {
-      if (result) {
-        this.order = result.data;
-      }
-    })
-    return this.order
+  // ngOnInit(): any {
+  //   this.a = this.route.snapshot.paramMap.get("page")
+  //   console.log(this.a)
+  //   this.orderService.getAllOrdersPaged(this.a).subscribe((result: any) => {
+  //     if (result) {
+  //       this.order = result.data;
+  //     }
+  //   })
+  //   return this.order
+  // }
+
+  ngOnInit(): void {
+    this.a = this.route.snapshot.paramMap.get("page");
+    this.store.dispatch(new GetOrders(this.a));
+    this.orders$
+      .subscribe((orders, ) => {
+        if (orders) {
+          this.orders = orders;
+        }
+      });
   }
 
   exportexcel() {

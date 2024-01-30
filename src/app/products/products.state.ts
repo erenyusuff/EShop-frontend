@@ -1,7 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {Product} from "./products.model";
 import {AddProduct, GetProducts} from "./products.action";
-import {ProductsComponent} from "./products.component";
 import {ProductService} from "../_services/product.service";
 import {Injectable} from "@angular/core";
 
@@ -44,7 +43,6 @@ export class ProductState {
   // }
   @Action(GetProducts)
   add({ patchState }: StateContext<ProductStateModel>, {categoryName}: GetProducts) {
-
     this.productService.productList(categoryName).subscribe((result: any) => {
       if (result) {
         patchState({
