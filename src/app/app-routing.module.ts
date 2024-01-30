@@ -31,6 +31,7 @@ const routes: Routes = [
   {path: 'admin', component: BoardAdminComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'products/:categoryName', component: ProductsComponent},
+  {path: 'admin/all-orders/:page', component: AllOrdersComponent},
   {path: 'admin/products/:page', component: ProductAdminComponent},
   {path: 'cart', component: CartComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},

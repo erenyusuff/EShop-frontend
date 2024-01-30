@@ -29,6 +29,9 @@ import {DashboardAdminComponent} from "./admin/dashboard-admin/dashboard-admin.c
 import {NgxsModule} from "@ngxs/store";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import {DetailModalComponent} from "./detail-modal/detail-modal.component";
+import {ProductState, ProductStateModel} from "./products/products.state";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 
 @NgModule({
   declarations: [
@@ -64,8 +67,15 @@ import {DetailModalComponent} from "./detail-modal/detail-modal.component";
     NoopAnimationsModule,
     NgbModule,
     MdbModalModule,
-    NgxsModule.forRoot([]),
-    NgxsStoragePluginModule.forRoot()
+    NgxsModule.forRoot([
+      ProductState
+    ]),
+    NgxsStoragePluginModule.forRoot({
+      key: [ProductState],
+      }
+    )
+    // NgxsReduxDevtoolsPluginModule.forRoot(),
+    // NgxsLoggerPluginModule.forRoot()
   ],
   providers: [httpInterceptorProviders],
   exports: [

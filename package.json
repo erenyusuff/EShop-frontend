@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "@ngxs/devtools-plugin": "^3.8.2-dev.master-e0981de",
+    "@ngxs/logger-plugin": "^3.8.2-dev.master-e0981de",
     "@ngxs/storage-plugin": "^3.8.2",
     "@ngxs/store": "^3.8.2",
     "@popperjs/core": "^2.11.8",

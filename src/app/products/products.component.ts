@@ -3,6 +3,10 @@ import {ProductService} from "../_services/product.service";
 import {Product} from "./products.model";
 import {CartService} from "../_services/cart.service";
 import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
+import {Select, Store} from "@ngxs/store";
+import {ProductState} from "./products.state";
+import {GetProducts} from "./products.action";
 
 @Component({
   selector: 'app-products',
@@ -10,24 +14,38 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  productList: undefined
+  productList: any
   a: string | null = ''
+  products: Product[];
+
+  @Select(ProductState.getProducts)
+  products$: Observable<Product[]>;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store
   ) {
+
+
   }
 
+
   ngOnInit(): void {
-    this.a = this.route.snapshot.paramMap.get("categoryName")
-    this.productService.productList(this.a).subscribe((result: any) => {
-      if (result) {
-        this.productList = result.data;
-      }
-    })
+    this.a = this.route.snapshot.paramMap.get("categoryName");
+
+    this.store.dispatch(new GetProducts(this.a));
+
+    this.products$
+      .subscribe((products) => {
+        if (products) {
+          this.productList = products;
+          console.log(this.productList)
+        }
+      });
   }
+
 
   addToCart(item: Product) {
     this.cartService.addToCart({
@@ -35,6 +53,7 @@ export class ProductsComponent implements OnInit {
       quantity: 1,
 
     }).subscribe(response => {
+      this.store.dispatch(new GetProducts(this.a));
     })
   }
 }

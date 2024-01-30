@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {Order} from "../orders/order.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Cart} from "../cart/cart.model";
+import {Product} from "../products/products.model";
 
 
 const httpOptions = {
@@ -22,6 +23,9 @@ getAllOrders() {
   return this.http.get<any>(environment.api + '/orders/all');
 }
 
+  getAllOrdersPaged(page: number){
+    return this.http.get<any>(environment.api + '/orders/page?page='+page);
+  }
 updateOrder(data: any) {
     return this.http.patch(environment.api + '/orders/update', data);
   }

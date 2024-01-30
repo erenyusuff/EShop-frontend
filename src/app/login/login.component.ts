@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {StorageService} from '../_services/storage.service';
 import {ProfileComponent} from "../profile/profile.component";
-import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-login',

@@ -13,7 +13,8 @@
           </li>
           <li>
             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-speedometer2 text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Dashboard</span> </a>
+              <i class="fs-4 bi-speedometer2 text-white"></i> <span
+              class="ms-1 d-none d-sm-inline text-white">Dashboard</span> </a>
             <!--            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">-->
             <!--              <li class="w-100">-->
             <!--                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>-->
@@ -25,7 +26,8 @@
           </li>
           <li>
             <a href="admin/all-orders" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Orders(Table)</span></a>
+              <i class="fs-4 bi-table text-white"></i> <span
+              class="ms-1 d-none d-sm-inline text-white">Orders(Table)</span></a>
           </li>
           <li>
             <a href="admin/orders" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
@@ -41,7 +43,8 @@
           </li>
           <li>
             <a href="admin/products" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-grid text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Products</span> </a>
+              <i class="fs-4 bi-grid text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Products</span>
+            </a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
               <li class="w-100">
                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
@@ -60,21 +63,24 @@
           </li>
           <li>
             <a class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-people text-white"></i> <span (click)="toggleSubMenu()" class="ms-1 d-none d-sm-inline text-white">Customers</span></a>
+              <i class="fs-4 bi-people text-white"></i> <span (click)="toggleSubMenu()"
+                                                              class="ms-1 d-none d-sm-inline text-white">Customers</span></a>
             <ul class="nav flex-column" *ngIf="isSubMenuOpen">
               <li class="nav-item">
                 <a class="nav-link text-white" href="admin/user-create">Create User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/edit" >Edit User</a>
+                <a class="nav-link text-white" href="admin/users/edit">Edit User</a>
               </li>
             </ul>
           </li>
         </ul>
         <hr>
         <div class="dropdown pb-4">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://avatars.githubusercontent.com/u/74963613?s=48&v=4" alt="hugenerd" width="30" height="30" class="rounded-circle">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://avatars.githubusercontent.com/u/74963613?s=48&v=4" alt="hugenerd" width="30" height="30"
+                 class="rounded-circle">
             <span class="d-none d-sm-inline mx-1">erenyusuff</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -92,7 +98,6 @@
     <div class="col py-3">
 
 
-
       <div class="col py-3">
         <button (click)="exportexcel()" class="btn btn-primary mb-3">
           Download File
@@ -108,15 +113,14 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of order">
-            <td>{{ item.id}}</td>
-            <td>{{ item.status}}</td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.status }}</td>
             <td>{{ item.id }}</td>
             <td>{{ item.cartId }}</td>
           </tr>
           </tbody>
         </table>
       </div>
-
       <nav aria-label="Page navigation example" style="justify-content: center; display: flex; align-items: center">
         <ul class="pagination">
           <li class="page-item">
