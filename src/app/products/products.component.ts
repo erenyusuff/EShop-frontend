@@ -27,8 +27,6 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store
   ) {
-
-
   }
 
 
@@ -36,9 +34,9 @@ export class ProductsComponent implements OnInit {
     this.a = this.route.snapshot.paramMap.get("categoryName");
 
     this.store.dispatch(new GetProducts(this.a));
-
     this.products$
       .subscribe((products) => {
+        this.store.dispatch(new GetProducts(this.a));
         if (products) {
           this.productList = products;
           console.log(this.productList)
@@ -53,7 +51,7 @@ export class ProductsComponent implements OnInit {
       quantity: 1,
 
     }).subscribe(response => {
-      this.store.dispatch(new GetProducts(this.a));
+      console.log(response)
     })
   }
 }

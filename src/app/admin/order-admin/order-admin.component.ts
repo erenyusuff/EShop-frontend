@@ -44,7 +44,7 @@ export class OrderAdminComponent implements OnInit {
   statuses = ['waiting', 'preparing', 'shipping']
 
   ngOnInit(): void {
-
+    // const take = 20
     this.orderService.getAllOrders().subscribe((result): any => {
       if (result) {
         this.order = result;

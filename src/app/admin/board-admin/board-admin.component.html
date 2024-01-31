@@ -12,7 +12,7 @@
             </a>
           </li>
           <li>
-            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+            <a href="admin/dashboard" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
               <i class="fs-4 bi-speedometer2 text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Dashboard</span> </a>
 <!--            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">-->
 <!--              <li class="w-100">-->
@@ -28,7 +28,7 @@
               <i class="fs-4 bi-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Orders(Table)</span></a>
           </li>
           <li>
-            <a href="admin/orders" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+            <a routerLink="admin/all-orders" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
               <i class="fs-4 bi-box-seam text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Orders</span></a>
             <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
               <li class="w-100">
@@ -40,7 +40,7 @@
             </ul>
           </li>
           <li>
-            <a href="admin/products" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+            <a routerLink="admin/products" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
               <i class="fs-4 bi-grid text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Products</span> </a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
               <li class="w-100">
@@ -90,8 +90,6 @@
       </div>
     </div>
     <div class="col py-3">
-
-
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -97,47 +97,98 @@
     </div>
     <div class="col py-3">
 
+      <!--      <dx-data-grid-->
+      <!--        id="gridContainer"-->
+      <!--        [dataSource]="ordersTest"-->
+      <!--        [remoteOperations]="true"-->
+      <!--        [wordWrapEnabled]="true"-->
+      <!--        [keyExpr]="'id'"-->
+      <!--        [width]="'100%'"-->
+      <!--        [showBorders]="true"-->
+      <!--        (onExporting)="onExporting($event)"-->
+      <!--      >-->
+      <!--        <dxo-paging [pageSize]="20"></dxo-paging>-->
+      <!--        <dxo-pager-->
+      <!--          [visible]="true"-->
+      <!--          [showNavigationButtons]="true"-->
+      <!--        ></dxo-pager>-->
+      <!--        <dxo-group-panel [visible]="true"></dxo-group-panel>-->
+      <!--        <dxo-grouping [autoExpandAll]="true"></dxo-grouping>-->
+      <!--        <dxo-selection mode="multiple"></dxo-selection>-->
 
-      <div class="col py-3">
-        <button (click)="exportexcel()" class="btn btn-primary mb-3">
-          Download File
-        </button>
-        <table class="table table-bordered" id="table-data">
-          <thead>
-          <tr>
-            <th>Id</th>
-            <th>Status</th>
-            <th>Price</th>
-            <th>cartId</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of orders">
-            <td>{{ item.id }}</td>
-            <td>{{ item.status }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.cartId }}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <nav aria-label="Page navigation example" style="justify-content: center; display: flex; align-items: center">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="admin/all-orders/1">1</a></li>
-          <li class="page-item"><a class="page-link" href="admin/all-orders/2">2</a></li>
-          <li class="page-item"><a class="page-link" href="admin/all-orders/3">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <!--        <dxi-column dataField="id"></dxi-column>-->
+      <!--        <dxi-column dataField="userId"></dxi-column>-->
+      <!--        <dxi-column dataField="cartId"></dxi-column>-->
+      <!--        <dxi-column dataField="status"></dxi-column>-->
+      <!--&lt;!&ndash;        [groupIndex]="0"&ndash;&gt;-->
+      <!--        <dxi-column dataField="price" [width]="130"></dxi-column>-->
+      <!--        <dxi-column dataField="createdAt" dataType="date" [width]="150"></dxi-column>-->
+      <!--      </dx-data-grid>-->
+
+
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="ordersTest"
+        [remoteOperations]="true"
+        [wordWrapEnabled]="true"
+        [keyExpr]="'id'"
+        [showBorders]="true"
+        (onExporting)="onExporting($event)"
+      >
+        <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+
+
+        <dxo-pager
+                    [visible]="true"
+                    [showNavigationButtons]="true"
+                  ></dxo-pager>
+                  <dxo-group-panel [visible]="true"></dxo-group-panel>
+                  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+                  <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-paging [pageSize]="20"></dxo-paging>
+        <dxo-header-filter [visible]="true" [allowSearch]="true">
+          <dxo-search [enabled]="true"></dxo-search>
+        </dxo-header-filter>
+
+
+        <dxi-column dataField="id" width="90"></dxi-column>
+        <dxi-column dataField="user.userName" caption="User Name" width="150"></dxi-column>
+        <dxi-column
+          dataField="status"
+
+          caption="Status"
+          width="120"
+        ></dxi-column>
+        <dxi-column dataField="user.memberGsmNumber" caption="Gsm Number" width="150"></dxi-column>
+        <dxi-column
+          dataField="createdAt"
+          caption="Date"
+          dataType="date"
+
+          width="110"
+        ></dxi-column>
+        <dxi-column
+          dataField="price"
+          caption="Amount"
+          format="currency"
+          width="100"
+        >
+          <dxo-header-filter [groupInterval]="20"></dxo-header-filter>
+        </dxi-column>
+        <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+        <div *dxTemplate="let item of 'detail'">
+          <dx-data-grid [dataSource]="item.data.cart.cartProducts">
+            <dxi-column caption="id" dataField="product.id" dataType="string"></dxi-column>
+            <dxi-column caption="product name" dataField="product.productName" dataType="string"></dxi-column>
+            <dxi-column caption="price" format="currency" dataField="product.price" ></dxi-column>
+            <dxi-column dataField="quantity" ></dxi-column>
+          </dx-data-grid>
+        </div>
+          <div class="master-detail-caption"></div>
+
+      </dx-data-grid>
+
+
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,3 +201,6 @@
     </div>
   </div>
 </div>
+
+
+

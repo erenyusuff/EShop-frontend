@@ -28,11 +28,18 @@ import {Modal2Component} from "./modal2/modal2.component";
 import {DashboardAdminComponent} from "./admin/dashboard-admin/dashboard-admin.component";
 import {NgxsModule} from "@ngxs/store";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
-import {DetailModalComponent} from "./detail-modal/detail-modal.component";
-import {ProductState, ProductStateModel} from "./products/products.state";
-import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
-import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {ProductState} from "./products/products.state";
 import {OrdersState} from "./orders/orders.state";
+import {
+  DxButtonModule, DxCalendarModule,
+  DxDataGridModule,
+  DxDateBoxModule,
+  DxDropDownBoxModule,
+  DxSelectBoxModule
+} from "devextreme-angular";
+import {DxoDetailsComponent, DxoMasterDetailComponent, DxoMasterDetailModule} from "devextreme-angular/ui/nested";
+import {AllOrdersComponent} from "./admin/all-orders/all-orders.component";
+
 
 @NgModule({
   declarations: [
@@ -54,9 +61,7 @@ import {OrdersState} from "./orders/orders.state";
     ProductAdminComponent,
     Modal2Component,
     DashboardAdminComponent,
-    DetailModalComponent
-
-
+    AllOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -68,19 +73,26 @@ import {OrdersState} from "./orders/orders.state";
     NoopAnimationsModule,
     NgbModule,
     MdbModalModule,
+    DxButtonModule,
+    DxDataGridModule,
+    DxDateBoxModule,
+    DxCalendarModule,
+    DxDropDownBoxModule,
+    DxSelectBoxModule,
+    DxoMasterDetailModule,
     NgxsModule.forRoot([
       ProductState, OrdersState
     ]),
     NgxsStoragePluginModule.forRoot({
-      key: [ProductState, OrdersState],
-      }
-    )
+        key: [ProductState, OrdersState],
+      },
+    ),
     // NgxsReduxDevtoolsPluginModule.forRoot(),
     // NgxsLoggerPluginModule.forRoot()
   ],
   providers: [httpInterceptorProviders],
   exports: [
-    BoardAdminComponent
+    BoardAdminComponent,
   ],
   bootstrap: [AppComponent]
 })

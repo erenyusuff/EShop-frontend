@@ -32,11 +32,11 @@ export class OrdersState {
 
   @Action(GetOrders)
   add({patchState}: StateContext<OrdersStateModel>, {page}: GetOrders) {
-    this.a = this.route.snapshot.paramMap.get("page")
-    this.orderService.getAllOrdersPaged(page).subscribe((result: any) => {
+    this.orderService.getAllOfOrders().subscribe((result: any) => {
+      console.log(result.data)
       if (result) {
         patchState({
-          orders: result.data
+          orders: result.data,
         });
       }
     })

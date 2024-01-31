@@ -2,10 +2,24 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "globalize": [
+        "node_modules/globalize/dist/globalize"
+      ],
+      "globalize/*": [
+        "node_modules/globalize/dist/globalize/*"
+      ],
+      "cldr": [
+        "node_modules/cldrjs/dist/cldr"
+      ],
+      "cldr/*": [
+        "node_modules/cldrjs/dist/cldr/*"
+      ]
+    },
     "outDir": "./out-tsc/app",
     "types": [
       "@angular/localize"
-    ]
+    ],
   },
   "files": [
     "src/main.ts",

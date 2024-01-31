@@ -42,6 +42,7 @@ export class AppComponent {
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
+
   }
 
   // filterByProductName(): {
