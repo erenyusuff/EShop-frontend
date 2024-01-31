@@ -32,16 +32,13 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.a = this.route.snapshot.paramMap.get("categoryName");
-
-    this.store.dispatch(new GetProducts(this.a));
     this.products$
       .subscribe((products) => {
-        this.store.dispatch(new GetProducts(this.a));
         if (products) {
           this.productList = products;
-          console.log(this.productList)
         }
       });
+    this.store.dispatch(new GetProducts(this.a));
   }
 
 
