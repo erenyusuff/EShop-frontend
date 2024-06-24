@@ -70,7 +70,7 @@
                 <a class="nav-link text-white" href="admin/user-create">Create User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="admin/users/edit">Edit User</a>
+                <a class="nav-link text-white" href="admin/users">Edit User</a>
               </li>
             </ul>
           </li>
@@ -139,12 +139,12 @@
 
 
         <dxo-pager
-                    [visible]="true"
-                    [showNavigationButtons]="true"
-                  ></dxo-pager>
-                  <dxo-group-panel [visible]="true"></dxo-group-panel>
-                  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
-                  <dxo-selection mode="multiple"></dxo-selection>
+          [visible]="true"
+          [showNavigationButtons]="true"
+        ></dxo-pager>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+        <dxo-selection mode="multiple"></dxo-selection>
         <dxo-paging [pageSize]="20"></dxo-paging>
         <dxo-header-filter [visible]="true" [allowSearch]="true">
           <dxo-search [enabled]="true"></dxo-search>
@@ -159,7 +159,7 @@
           caption="Status"
           width="120"
         ></dxi-column>
-        <dxi-column dataField="user.memberGsmNumber" caption="Gsm Number" width="150"></dxi-column>
+        <dxi-column dataField="?" width="150"></dxi-column>
         <dxi-column
           dataField="createdAt"
           caption="Date"
@@ -176,18 +176,19 @@
           <dxo-header-filter [groupInterval]="20"></dxo-header-filter>
         </dxi-column>
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
-        <div *dxTemplate="let item of 'detail'">
+
+        <div *dxTemplate="let item of 'detail'" >
           <dx-data-grid [dataSource]="item.data.cart.cartProducts">
             <dxi-column caption="id" dataField="product.id" dataType="string"></dxi-column>
             <dxi-column caption="product name" dataField="product.productName" dataType="string"></dxi-column>
-            <dxi-column caption="price" format="currency" dataField="product.price" ></dxi-column>
-            <dxi-column dataField="quantity" ></dxi-column>
+            <dxi-column caption="price" format="currency" dataField="product.price"></dxi-column>
+            <dxi-column dataField="quantity"></dxi-column>
           </dx-data-grid>
+<!--          <detail-grid [key]="orderService.loadDetails(1)"></detail-grid>-->
         </div>
-          <div class="master-detail-caption"></div>
+        <div class="master-detail-caption"></div>
 
       </dx-data-grid>
-
 
       <head>
         <meta charset="utf-8">

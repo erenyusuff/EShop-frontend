@@ -32,6 +32,11 @@ export class OrdersService {
     return this.http.get<any>(environment.api + '/orders/state');
   }
 
+  loadDetails(id: any) {
+    console.log(id)
+    return this.http.get<any>(environment.api + '/orders/details/'+id+'');
+  }
+
   getAllOrdersPaged(page: any) {
     console.log(page)
     return this.http.get<any>(environment.api + '/orders/page?page=' + page);

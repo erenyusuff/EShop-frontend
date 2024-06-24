@@ -59,7 +59,7 @@
             </ul>
           </li>
           <li>
-            <a class="nav-link px-0 align-middle">
+            <a  class="nav-link px-0 align-middle">
               <i class="fs-4 bi-people text-white"></i> <span (click)="toggleSubMenu()" class="ms-1 d-none d-sm-inline text-white">Customers</span></a>
             <ul class="nav flex-column" *ngIf="isSubMenuOpen">
               <li class="nav-item">
@@ -94,72 +94,85 @@
     <div class="col py-3">
 
 
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="users"
+        [remoteOperations]="true"
+        [wordWrapEnabled]="true"
+        [keyExpr]="'id'"
+        [showBorders]="true">
+<!--        (onExporting)="onExporting($event)"-->
+
+        <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
 
 
-      <div class="container">
-        <table class="table table-bordered" id="table-data">
-          <thead>
-          <tr>
-            <th>Id</th>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th style="width: 10px"></th>
-            <th style="width: 10px"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of productList">
-            <td>{{ item.id }}</td>
-            <td>{{ item.productName}}</td>
-            <td>{{ item.category }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.stock }}</td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal2" data-target="#exampleModal"
-                    (click)="openModalEdit(item.productName, item.price, item.stock, item.description, item.img, item.category, item.id)">
-              <i class="bi bi-pencil-square"></i>
-            </button></td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteProduct(item.id); refresh()"><i class="bi bi-trash"></i></button></td>
-          </tr>
-          </tbody>
-        </table>
+        <dxo-pager
+          [visible]="true"
+          [showNavigationButtons]="true"
+        ></dxo-pager>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-paging [pageSize]="20"></dxo-paging>
+        <dxo-header-filter [visible]="true" [allowSearch]="true">
+          <dxo-search [enabled]="true"></dxo-search>
+        </dxo-header-filter>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                (click)="openModalReal()">
-          Create Product
-        </button>
 
-        <nav style="padding-top: 750px; justify-content: center; align-items: center; display: flex;" aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="admin/products/1">1</a></li>
-            <li class="page-item"><a class="page-link" href="admin/products/2">2</a></li>
-            <li class="page-item"><a class="page-link" href="admin/products/3">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="admin/products/" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <dxi-column dataField="id" width="90"></dxi-column>
+        <dxi-column dataField="userName" caption="User Name" width="150"></dxi-column>
+        <dxi-column
+          dataField="email"
+          caption="E mail"
+          width="320"
+        ></dxi-column>
+        <dxi-column
+          dataField="createdAt"
+          caption="Register date"
+          dataType="date"
+          width="110"
+        ></dxi-column>
+        <dxo-editing
+          [allowUpdating]="true"
+          [allowAdding]="true"
+          [allowDeleting]="true"
+          mode="row">
+        </dxo-editing>
+        <dxi-column
+          dataField="role"
+          caption="role"
+          width="100"
+        >
+          <dxo-header-filter [groupInterval]="20"></dxo-header-filter>
+        </dxi-column>
+        <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Including Bootstrap Icons in HTML</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        <!-- Bootstrap Font Icon CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-      </head>
+        <div *dxTemplate="let item of 'detail'" >
+          <dx-data-grid [dataSource]="item.data.cart.cartProducts">
+            <dxi-column caption="id" dataField="product.id" dataType="string"></dxi-column>
+            <dxi-column caption="product name" dataField="product.productName" dataType="string"></dxi-column>
+            <dxi-column caption="price" format="currency" dataField="product.price"></dxi-column>
+            <dxi-column dataField="quantity"></dxi-column>
+          </dx-data-grid>
+        </div>
+        <div class="master-detail-caption"></div>
+
+      </dx-data-grid>
+
+
+
+
+
+
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Including Bootstrap Icons in HTML</title>
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+          <!-- Bootstrap Font Icon CSS -->
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        </head>
+      </div>
     </div>
   </div>
-</div>
-</div>

@@ -35,4 +35,7 @@ export class ModalComponent {
       updatedAt
     }).subscribe()
   }
+  refresh() {
+    window.location.reload()
+  }
 }

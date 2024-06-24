@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -13,7 +13,6 @@ import {OrdersService} from "../../_services/orders.service";
 import {CommonModule} from "@angular/common";
 import {group} from "@angular/animations";
 import _ from "lodash";
-import {UserAdminComponent} from "../user-admin/user-admin.component";
 
 /**
  * @title Drag&Drop connected sorting group

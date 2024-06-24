@@ -35,4 +35,8 @@ export class UserService {
   addUser(payload: any): Observable<any> {
     return this.http.post(environment.api + '/users', payload, httpOptions)
   }
+
+  getUsers() {
+    return this.http.get(environment.api + '/users', httpOptions)
+  }
 }

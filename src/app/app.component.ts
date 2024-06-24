@@ -45,8 +45,10 @@ export class AppComponent {
 
   }
 
-  // filterByProductName(): {
-  // };
+
+  filterByProductName(name: string) {
+    this.productService.searchProducts(name).subscribe()
+  };
 
   logout(): void {
     this.authService.logout().subscribe({

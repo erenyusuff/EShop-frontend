@@ -33,10 +33,11 @@
         <li class="nav-item">
           <a class="nav-item">{{ this.username }}</a>
         </li>
-<!--        <form class="form-inline my- my-lg-1">-->
-<!--          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--          <button class="btn btn-outline-light my-1 my-sm-0" type="submit">Search</button>-->
-<!--        </form>-->
+
+        <form class="form-inline my- my-lg-1">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-1 my-sm-0" type="submit" (click)="filterByProductName('iphone')">Search</button>
+        </form>
 
 
         <li class="nav-item">

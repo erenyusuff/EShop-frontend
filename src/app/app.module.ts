@@ -32,13 +32,20 @@ import {ProductState} from "./products/products.state";
 import {OrdersState} from "./orders/orders.state";
 import {
   DxButtonModule, DxCalendarModule,
+  DxTemplateModule,
   DxDataGridModule,
   DxDateBoxModule,
   DxDropDownBoxModule,
   DxSelectBoxModule
 } from "devextreme-angular";
-import {DxoDetailsComponent, DxoMasterDetailComponent, DxoMasterDetailModule} from "devextreme-angular/ui/nested";
+import {
+  DxoDetailsComponent,
+  DxoDetailsModule,
+  DxoMasterDetailComponent,
+  DxoMasterDetailModule
+} from "devextreme-angular/ui/nested";
 import {AllOrdersComponent} from "./admin/all-orders/all-orders.component";
+import {UserEditAdminComponent} from "./admin/user-edit-admin/user-edit-admin.component";
 
 
 @NgModule({
@@ -61,7 +68,8 @@ import {AllOrdersComponent} from "./admin/all-orders/all-orders.component";
     ProductAdminComponent,
     Modal2Component,
     DashboardAdminComponent,
-    AllOrdersComponent
+    AllOrdersComponent,
+    UserEditAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +87,9 @@ import {AllOrdersComponent} from "./admin/all-orders/all-orders.component";
     DxCalendarModule,
     DxDropDownBoxModule,
     DxSelectBoxModule,
+    DxTemplateModule,
+    DxoDetailsModule,
+    DxoMasterDetailModule,
     DxoMasterDetailModule,
     NgxsModule.forRoot([
       ProductState, OrdersState

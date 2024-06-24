@@ -25,7 +25,6 @@ export class CartComponent implements OnInit {
       duration: 3000,
       panelClass: ['mat-toolbar'],
     }); this.route.navigate(["orders"])
-
   }
   openSnackBar() {
     this.snackBarOpener('Payment is successful. Redirecting to orders page');

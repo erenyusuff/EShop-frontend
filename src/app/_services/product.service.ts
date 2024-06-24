@@ -12,6 +12,11 @@ export class ProductService {
   addProduct(data:Product){
     return this.http.post(environment.api + 'products', data);
   }
+  searchProducts(name: string) {
+    const params = new HttpParams({fromString: 'name='+name+''});
+    // return this.http.get<Product[]>(environment.api + '/products?'+params+'')
+    return this.http.get<Product[]>(environment.api + '/products?'+params+'');
+  }
   productList(categoryName: string | null){
     const params = new HttpParams({fromString: 'category='+categoryName+''});
     return this.http.get<Product[]>(environment.api + '/products/category?'+params+'');

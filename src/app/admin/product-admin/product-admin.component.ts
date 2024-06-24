@@ -57,7 +57,7 @@ export class ProductAdminComponent implements OnInit {
   }
 
   refresh(): void {
-    this.getData()
+    window.location.reload()
   }
 
   openModalReal() {
